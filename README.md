@@ -1,5 +1,7 @@
 # vim-shutup
 
+![build](https://github.com/heavenshell/vim-shutup/workflows/build/badge.svg)
+
 Supress warnings.
 
 ## Usage
