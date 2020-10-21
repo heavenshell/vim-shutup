@@ -9,6 +9,7 @@ function! shutup#run(position) abort
     let results = []
     let lnum = line('.')
     let filtered_list = filter(qflist, { _, v -> v['lnum'] == lnum })
+    let save_cursor = getcurpos()
     let i = 0
     for l in filtered_list
       for p in keys(g:shutup_patterns)
@@ -16,6 +17,9 @@ function! shutup#run(position) abort
         if matched != ''
           let F = g:shutup_patterns[p]
           let value = F(matched, a:position)
+          if value == ''
+            continue
+          endif
           if i == 0
             call add(results, value)
           else
@@ -28,8 +32,10 @@ function! shutup#run(position) abort
     let value = join(results, ',')
     if a:position == 'upper'
       silent! execute 'normal! O' . value
+      call setpos('.', [save_cursor[0], save_cursor[1] + 1, save_cursor[2], save_cursor[3], save_cursor[4]])
     else
       silent! execute 'normal! $a' . value
+      call setpos('.', save_cursor)
     endif
   endif
 endfunction
