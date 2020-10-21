@@ -76,7 +76,7 @@ endfunction
 function s:ale_py_format(...)
   if $ft !~ 'python'
     return ''
-  endif
+  ndif
   let value = a:000[0]
   return printf('  # noqa: %s', a:000[0])
 endfunction
@@ -91,7 +91,9 @@ let g:ale_echo_msg_format = '[%linter%] [%severity%] %s (%code%)'
 
 ## Screencasts
 
-![vim-shutup](./assets/vim-shutup.gif)
+![vim-shutup](https://user-images.githubusercontent.com/56591/96607212-187c6f00-1333-11eb-8611-91ebc0ecf906.gif)
+
+[More](https://github.com/heavenshell/vim-shutup/issues/1)
 
 ## License
 

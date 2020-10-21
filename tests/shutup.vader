@@ -1,0 +1,51 @@
+# vim:set et sw=4 ts=4 tw=79:
+Given typescript (line):
+  console.log('foo')
+
+Execute:
+  :call setqflist([{'lnum': 1, 'bufnr': 1, 'col': 1, 'valid': 1, 'vcol': 0, 'nr': 0, 'type': 'E', 'pattern': '', 'text': '[ESlint] Unexpected console statement. (no-console)'}], 'r')
+  :Shutup
+
+Expect typescript:
+  console.log('foo') // eslint-disable-line no-console
+
+Given typescript (next-line):
+  console.log('foo')
+
+Execute:
+  :call setqflist([{'lnum': 1, 'bufnr': 1, 'col': 1, 'valid': 1, 'vcol': 0, 'nr': 0, 'type': 'E', 'pattern': '', 'text': '[ESlint] Unexpected console statement. (no-console)'}], 'r')
+  :ShutupNext
+
+Expect typescript:
+  // eslint-disable-next-line no-console
+  console.log('foo')
+
+Given typescript (multi):
+  console.log('foo' as any)
+
+Execute:
+  :call setqflist([{'lnum': 1, 'bufnr': 1, 'col': 1, 'valid': 1, 'vcol': 0, 'nr': 0, 'type': 'E', 'pattern': '', 'text': '[ESlint] Unexpected console statement. (no-console)'}, {'lnum': 1, 'bufnr': 1, 'col': 22, 'valid': 1, 'vcol': 0, 'nr': 0, 'type': 'E', 'pattern': '', 'text': '[ESlint] Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)'}], 'r')
+  :Shutup
+
+Expect typescript:
+  console.log('foo' as any) // eslint-disable-line no-console,@typescript-eslint/no-explicit-any
+
+Given typescript (vim-lsp):
+  console.log('foo')
+
+Execute:
+  :call setqflist([{'lnum': 1, 'bufnr': 1, 'col': 1, 'valid': 1, 'vcol': 0, 'nr': 0, 'type': 'E', 'pattern': '', 'text': 'eslint:Error:no-console:Unexpected console statement.'}], 'r')
+  :Shutup
+
+Expect typescript:
+  console.log('foo') // eslint-disable-line no-console
+
+Given typescript (ale):
+  console.log('foo')
+
+Execute:
+  :call setqflist([{'lnum': 1, 'bufnr': 1, 'col': 1, 'valid': 1, 'vcol': 0, 'nr': 0, 'type': 'E', 'pattern': '', 'text': '[eslint] [Error] Unexpected console statement. (no-console)'}], 'r')
+  :Shutup
+
+Expect typescript:
+  console.log('foo') // eslint-disable-line no-console

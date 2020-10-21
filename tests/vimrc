@@ -1,0 +1,30 @@
+set nocompatible
+filetype off
+" Clear all rtp
+set rtp=$VIMRUNTIME
+
+" Add vader.vim to rtp
+set rtp+=./vader.vim
+set rtp+=../
+filetype plugin indent on
+
+function s:eslint_format(...)
+  if &ft !~ 'typescript'
+    return ''
+  endif
+  let value = a:000[0]
+  let position = a:000[1]
+  if position == 'upper'
+    return printf('// eslint-disable-next-line %s', value)
+  endif
+  return printf(' // eslint-disable-line %s', value)
+endfunction
+function s:py_format(...)
+  return printf('  # noqa: %s', a:000[0])
+endfunction
+
+let g:shutup_patterns = {
+\ '[ESlint].*(\zs.*\ze)': function('s:eslint_format'),
+\ '[A-Z][0-9]\{3}': function('s:py_format'),
+\ 'eslint:\(Error\|Warning\):\zs.*\ze:': function('s:eslint_format'),
+\ }
