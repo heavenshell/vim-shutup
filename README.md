@@ -70,7 +70,7 @@ console.log('foo' as any)
 
 ```vim
 function s:ale_eslint_format(...)
-  if $ft !~ 'typescript'
+  if &ft !~ 'typescript'
     return ''
   endif
   let value = a:000[0]
@@ -82,7 +82,7 @@ function s:ale_eslint_format(...)
   return printf(' // eslint-disable-line %s', value)
 endfunction
 function s:ale_py_format(...)
-  if $ft !~ 'python'
+  if &ft !~ 'python'
     return ''
   endif
   let value = a:000[0]
