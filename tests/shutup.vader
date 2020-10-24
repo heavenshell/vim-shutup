@@ -9,6 +9,7 @@ Execute:
 Expect typescript:
   console.log('foo') // eslint-disable-line no-console
 
+# insert above
 Given typescript (next-line):
   console.log('foo')
 
@@ -20,6 +21,7 @@ Expect typescript:
   // eslint-disable-next-line no-console
   console.log('foo')
 
+# multi errors
 Given typescript (multi):
   console.log('foo' as any)
 
@@ -30,6 +32,7 @@ Execute:
 Expect typescript:
   console.log('foo' as any) // eslint-disable-line no-console,@typescript-eslint/no-explicit-any
 
+# vim-lsp's diagonistic
 Given typescript (vim-lsp):
   console.log('foo')
 
@@ -40,6 +43,7 @@ Execute:
 Expect typescript:
   console.log('foo') // eslint-disable-line no-console
 
+# ALE diagonistic
 Given typescript (ale):
   console.log('foo')
 

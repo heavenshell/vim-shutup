@@ -41,6 +41,8 @@ cli.ts|1 col 1| eslint:Error:no-console:Unexpected console statement.
 cli.ts|1 col 22| eslint:Warning:@typescript-eslint/no-explicit-any:Unexpected any. Specify a different type.
 ```
 
+### Insert to same line
+
 Execute `Shutup` command.
 
 ```vim
@@ -53,6 +55,8 @@ Result
 console.log('foo' as any) // eslint-disable-line no-console,@typescript-eslint/no-explicit-any
 ```
 
+### Insert above the cursor
+
 Execute `ShutupNext` command.
 
 ```vim
@@ -64,6 +68,26 @@ Result
 ```typescript
 // eslint-disable-next-line no-console,@typescript-eslint/no-explicit-any
 console.log('foo' as any)
+```
+
+### Range
+
+```typescript
+console.log('foo')
+console.log('bar')
+```
+
+Visual select and execute command
+
+```vim
+:'<,'>Shutup
+```
+
+Result
+
+```typescript
+console.log('foo') // eslint-disable-line no-console
+console.log('bar') // eslint-disable-line no-console
 ```
 
 ### For ALE
