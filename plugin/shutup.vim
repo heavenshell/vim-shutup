@@ -1,3 +1,8 @@
+" File: shutup.vim
+" Author: Shinya Ohyanagi <sohyanagi@gmail.com>
+" WebPage: http://github.com/heavenshell/vim-shutup
+" Description: Supress diagnostic error with rule name.
+" License: BSD, see LICENSE for more details.
 let s:save_cpo = &cpo
 set cpo&vim
 
