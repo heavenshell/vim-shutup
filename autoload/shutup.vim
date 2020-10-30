@@ -49,7 +49,7 @@ function! s:execute(qflist, position, lnum) abort
 endfunction
 
 function! shutup#run(qargs, count, line1, line2, position) abort
-  let qflist = len(getqflist()) ? getqflist() : getloclist(win_getid())
+  let qflist = getqflist() + getloclist(win_getid())
   if len(qflist) > 0
     let range = s:get_range()
     if range['end_lnum'] == '$'
